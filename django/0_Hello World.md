@@ -141,7 +141,7 @@ Quit the server with CONTROL-C.
 
 - Go to the `http://127.0.0.1:1729/` and see whether the following screen is appearing or not. 
   
-![/imgs/successful.png](https://github.com/theunhackable/notes/blob/main/django/imgs/successful.png)
+![/imgs/successful.png](imgs/successful.png)
 
 ## Starting the django app
 
