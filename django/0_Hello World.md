@@ -344,6 +344,11 @@ urlpatterns = [
     path('todo_list/', include('todo_list.urls')),
 ]
 ```
+- Now open the following link : `http://127.0.0.1:1729/todo_list/say_hello/`
+
+We will get teh following screen:
+![helloworld.png](imgs/hello%20world.png)
+    
 ## How Does it Work?
 
 whenever the url `http://127.0.0.1:1729/todo_list/say_hello` entered the `Django` server looks for the first part of the url in the `MyCP/urls.py` file. If it is found then the found part is chopped off and the remaining path is sent
@@ -388,6 +393,8 @@ urlpatterns = [
 we can see that `say_hello` route is having the connection with the view we have written.
 
 Thus, `Django` sends the `HttpResponse` to the client.
+
+
 
 
 
