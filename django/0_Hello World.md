@@ -349,7 +349,7 @@ urlpatterns = [
 We will get teh following screen:
 ![helloworld.png](imgs/hello%20world.png)
     
-## How Does it Work?
+## It Works but How?
 
 whenever the url `http://127.0.0.1:1729/todo_list/say_hello` entered the `Django` server looks for the first part of the url in the `MyCP/urls.py` file. If it is found then the found part is chopped off and the remaining path is sent
 
