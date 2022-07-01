@@ -300,7 +300,7 @@ urlpatterns = [
 
 The path function that we have imported takes 
 2 inputs.
-   1. the route through user can access
+   1. the route from the main project through user can access the view.
    2. the view function name
    add them. 
 
@@ -315,8 +315,81 @@ from . import views
 urlpatterns = [
     path('say_hello/', views.index)
 ]
-
 ```
+  - Next, we should add the `todo_list` app url to the main project which gives access of `todo_list` app to the user.
+  
+  The instructions for doing this step are mentioned in the `main/urls.py` file itself.
+### file: MyCp/urls.py
+```py
+  """MyCP URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('todo_list/', include('todo_list.urls')),
+]
+```
+## How Does it Work?
+
+whenever the url `http://127.0.0.1:1729/todo_list/say_hello` entered the `Django` server looks for the first part of the url in the `MyCP/urls.py` file. If it is found then the found part is chopped off and the remaining path is sent
+
+#### Example:-
+
+- Say input = `http://127.0.0.1:1729/todo_list/say_hello/`
+
+- Look for the "todo_list" part of the url in the `MyCP/urls.py` file.
+  ### file: MyCp/urls.py
+
+    ```py
+    .
+    .
+    .
+
+    urlpatterns = [
+                    ..., 
+                    path('todo_list/', include('todo_list.urls'))
+                ]
+    .
+    .
+    .
+    ```
+
+- As there is a path included in the `MyCP/urls.py` file send the remaining path to the included path i.e. `todo_list.urls`
+
+- Now `todo_list/urls.py` takes input from the main project and looks for the remaining path of the url. i.e    `say_hello/` 
+  
+### file: MyCp/todo_list/urls.py
+
+```py
+# imports
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('say_hello/', views.index)
+]
+```
+we can see that `say_hello` route is having the connection with the view we have written.
+
+Thus, `Django` sends the `HttpResponse` to the client.
+
+
 
 
 
